@@ -1,0 +1,52 @@
+﻿@model FCE_KillCoronaVirus.Models.Paciente
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Paciente</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RutPac" class="control-label"></label>
+                <input asp-for="RutPac" class="form-control" />
+                <span asp-validation-for="RutPac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NomPac" class="control-label"></label>
+                <input asp-for="NomPac" class="form-control" />
+                <span asp-validation-for="NomPac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FecNacPac" class="control-label"></label>
+                <input asp-for="FecNacPac" class="form-control" />
+                <span asp-validation-for="FecNacPac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EdadPac" class="control-label"></label>
+                <input asp-for="EdadPac" class="form-control" />
+                <span asp-validation-for="EdadPac" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CodSexo" class="control-label"></label>
+                <select asp-for="CodSexo" class ="form-control" asp-items="ViewBag.CodSexo"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

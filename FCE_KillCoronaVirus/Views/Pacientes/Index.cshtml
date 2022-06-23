@@ -1,0 +1,65 @@
+﻿@model IEnumerable<FCE_KillCoronaVirus.Models.Paciente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RutPac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomPac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FecNacPac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdadPac)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CodSexoNavigation)
+            </th>
+            <th>Atencion</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RutPac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomPac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FecNacPac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EdadPac)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodSexoNavigation.NomSexo)
+                </td>
+                <td>
+                    <a asp-action="Create" asp-controller="Atencions" asp-route-id="@item.IdPac">Crear Atencion</a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdPac">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdPac">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdPac">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
