@@ -56,7 +56,7 @@ namespace FCE_KillCoronaVirus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPac,RutPac,NomPac,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("IdPac,RutPac,NomPac,apPaterno,apMaterno,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace FCE_KillCoronaVirus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPac,RutPac,NomPac,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPac,RutPac,NomPac,apPaterno,apMaterno,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
         {
             if (id != paciente.IdPac)
             {
@@ -154,14 +154,37 @@ namespace FCE_KillCoronaVirus.Controllers
             {
                 _context.Pacientes.Remove(paciente);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PacienteExists(int id)
         {
-          return (_context.Pacientes?.Any(e => e.IdPac == id)).GetValueOrDefault();
+            return (_context.Pacientes?.Any(e => e.IdPac == id)).GetValueOrDefault();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> buscarPaciente(string RUN,string nombrePac, string apPaterno, string apMaterno)
+        {
+            // funcion lambda para buscar los pacientes que coincidan con cualquiera de las opciones de busqueda
+            var pacientes = await _context.Pacientes
+                .Include(p => p.CodSexoNavigation)
+                .Where(p => 
+                p.RutPac.ToString() == RUN || 
+                    (
+                        p.NomPac.Contains(nombrePac)||
+                        p.ApPaterno.Contains(apPaterno)||
+                        p.ApMaterno.Contains(apMaterno)
+                    )
+                ).ToListAsync();
+
+            if (pacientes == null)
+            {
+                return NotFound();
+            }
+            return View(pacientes);
         }
     }
 }
