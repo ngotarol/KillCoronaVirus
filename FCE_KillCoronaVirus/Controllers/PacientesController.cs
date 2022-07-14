@@ -19,10 +19,32 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         // GET: Pacientes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string RUN, string nombrePac, string apPaterno, string apMaterno)
         {
-            var killCoronaVirusContext = _context.Pacientes.Include(p => p.CodSexoNavigation);
-            return View(await killCoronaVirusContext.ToListAsync());
+            if (RUN != null || nombrePac != null || apPaterno != null || apMaterno != null)// funcion lambda para buscar los pacientes que coincidan con cualquiera de las opciones de busqueda
+            {
+                var pacientes = await _context.Pacientes
+                .Include(p => p.CodSexoNavigation)
+                .Where(p =>
+                p.RutPac.ToString() == RUN ||
+                    (
+                        p.NomPac.Contains(nombrePac) ||
+                        p.ApPaterno.Contains(apPaterno) ||
+                        p.ApMaterno.Contains(apMaterno)
+                    )
+                ).ToListAsync();
+
+                if (pacientes == null)
+                {
+                    return NotFound();
+                }
+                return View(pacientes);
+            }
+            else
+            {
+                var killCoronaVirusContext = _context.Pacientes.Include(p => p.CodSexoNavigation);
+                return View(await killCoronaVirusContext.ToListAsync());
+            }
         }
 
         // GET: Pacientes/Details/5
@@ -166,16 +188,16 @@ namespace FCE_KillCoronaVirus.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> buscarPaciente(string RUN,string nombrePac, string apPaterno, string apMaterno)
+        public async Task<IActionResult> buscarPaciente(string RUN, string nombrePac, string apPaterno, string apMaterno)
         {
             // funcion lambda para buscar los pacientes que coincidan con cualquiera de las opciones de busqueda
             var pacientes = await _context.Pacientes
                 .Include(p => p.CodSexoNavigation)
-                .Where(p => 
-                p.RutPac.ToString() == RUN || 
+                .Where(p =>
+                p.RutPac.ToString() == RUN ||
                     (
-                        p.NomPac.Contains(nombrePac)||
-                        p.ApPaterno.Contains(apPaterno)||
+                        p.NomPac.Contains(nombrePac) ||
+                        p.ApPaterno.Contains(apPaterno) ||
                         p.ApMaterno.Contains(apMaterno)
                     )
                 ).ToListAsync();

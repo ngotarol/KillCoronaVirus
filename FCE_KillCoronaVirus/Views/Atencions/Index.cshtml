@@ -1,14 +1,12 @@
 ﻿@model IEnumerable<FCE_KillCoronaVirus.Models.Atencion>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Atenciones";
 }
 
-<h1>Index</h1>
+<h1>Atenciones de Pacientes</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -21,6 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.IdPacNavigation)
             </th>
+            <th>Nombre</th>
             <th>
                 @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
             </th>
@@ -37,10 +36,13 @@
                 @Html.DisplayFor(modelItem => item.FechaHora)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdPacNavigation.IdPac)
+                @Html.DisplayFor(modelItem => item.IdPacNavigation.RutPac)
+            </td>
+                <td>
+                @Html.Raw(item.IdPacNavigation.NomPac +" "+ item.IdPacNavigation.ApPaterno+" "+item.IdPacNavigation.ApMaterno)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.IdUsuario)
+                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.NomUsuario)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.NroAtencion">Edit</a> |

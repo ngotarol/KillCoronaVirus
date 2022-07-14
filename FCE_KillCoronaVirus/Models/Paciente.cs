@@ -22,10 +22,10 @@ namespace FCE_KillCoronaVirus.Models
         [Required(ErrorMessage = "Debe indicar un {0}", AllowEmptyStrings = false)]
         public string NomPac { get; set; }
         [Display(Name = "Apellido Paterno")]
-        [Required(ErrorMessage = "Debe indicar un {0}")]
+        [Required(ErrorMessage = "Debe indicar un {0}", AllowEmptyStrings = false)]
         public string ApPaterno { get; set; }
         [Display(Name = "Apellido Materno")]
-        [Required(ErrorMessage = "Debe indicar un {0}")]
+        [Required(ErrorMessage = "Debe indicar un {0}", AllowEmptyStrings = false)]
         public string ApMaterno { get; set; }
         [Display(Name = "Fecha de nacimiento")]
         [Required(ErrorMessage = "Debe indicar una {0}")]

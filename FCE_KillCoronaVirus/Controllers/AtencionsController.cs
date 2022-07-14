@@ -46,21 +46,18 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         // GET: Atencions/Create
-        public IActionResult Create(int? id)
+        public IActionResult Create(int id)
         {
-            if (id == null)
-            {
-                ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac");
-                ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario");
-            }
-            else
-            {
 
-                Paciente objPaciente = _context.Pacientes.Where(pac => pac.IdPac == id.Value).FirstOrDefault();
-                ViewData["IdPac"] = objPaciente.IdPac;
-                ViewData["NomPac"] = objPaciente.NomPac;
-            }
-            return View();
+
+            Paciente objPaciente = _context.Pacientes.Where(pac => pac.IdPac == id).FirstOrDefault();
+
+            Atencion objAtencion = new Atencion
+            {
+                IdPac = objPaciente.IdPac,
+                IdUsuario = 2 //TODO: actualizar este dato
+            };
+            return View(objAtencion);
         }
 
         // POST: Atencions/Create
