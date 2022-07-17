@@ -5,10 +5,10 @@ namespace FCE_KillCoronaVirus.Models
 {
     public partial class EspecialidadMedico
     {
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
         public int CodEsp { get; set; }
 
-        public virtual Especilidad CodEspNavigation { get; set; } = null!;
-        public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+        public virtual Especialidad CodEspNavigation { get; set; } = null!;
+        public virtual ApplicationUser IdUsuarioNavigation { get; set; } = null!;
     }
 }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace FCE_KillCoronaVirus.Models
 {
-    public partial class KillCoronaVirusContext : DbContext
+    public partial class KillCoronaVirusContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         public KillCoronaVirusContext()
         {
@@ -15,23 +17,21 @@ namespace FCE_KillCoronaVirus.Models
             : base(options)
         {
         }
-
+        public virtual DbSet<ApplicationUser> ApplicationUser { get; set; } = null!;
         public virtual DbSet<Atencion> Atencions { get; set; } = null!;
         public virtual DbSet<DetalleOrden> DetalleOrdens { get; set; } = null!;
         public virtual DbSet<DetalleRecetum> DetalleReceta { get; set; } = null!;
         public virtual DbSet<EspecialidadMedico> EspecialidadMedicos { get; set; } = null!;
-        public virtual DbSet<Especilidad> Especilidads { get; set; } = null!;
+        public virtual DbSet<Especialidad> Especilidads { get; set; } = null!;
         public virtual DbSet<Examan> Examen { get; set; } = null!;
         public virtual DbSet<Farmaco> Farmacos { get; set; } = null!;
         public virtual DbSet<Orden> Ordens { get; set; } = null!;
         public virtual DbSet<Paciente> Pacientes { get; set; } = null!;
         public virtual DbSet<PresentacionFarmaco> PresentacionFarmacos { get; set; } = null!;
         public virtual DbSet<Recetum> Receta { get; set; } = null!;
-        public virtual DbSet<Rol> Rols { get; set; } = null!;
         public virtual DbSet<Sexo> Sexos { get; set; } = null!;
         public virtual DbSet<TipoExaman> TipoExamen { get; set; } = null!;
         public virtual DbSet<UnidadDeMedidum> UnidadDeMedida { get; set; } = null!;
-        public virtual DbSet<Usuario> Usuarios { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -153,11 +153,11 @@ namespace FCE_KillCoronaVirus.Models
                     .HasConstraintName("FK_EspecialidadMedico_Usuarios");
             });
 
-            modelBuilder.Entity<Especilidad>(entity =>
+            modelBuilder.Entity<Especialidad>(entity =>
             {
                 entity.HasKey(e => e.CodEsp);
 
-                entity.ToTable("Especilidad");
+                entity.ToTable("Especialidad");
 
                 entity.Property(e => e.CodEsp).HasColumnName("codEsp");
 
@@ -335,20 +335,6 @@ namespace FCE_KillCoronaVirus.Models
                     .HasConstraintName("FK_Receta_Atencion");
             });
 
-            modelBuilder.Entity<Rol>(entity =>
-            {
-                entity.HasKey(e => e.CodRol);
-
-                entity.ToTable("Rol");
-
-                entity.Property(e => e.CodRol).HasColumnName("codRol");
-
-                entity.Property(e => e.NomRol)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("nomRol");
-            });
-
             modelBuilder.Entity<Sexo>(entity =>
             {
                 entity.HasKey(e => e.CodSexo);
@@ -387,28 +373,9 @@ namespace FCE_KillCoronaVirus.Models
                     .HasColumnName("nomUOM");
             });
 
-            modelBuilder.Entity<Usuario>(entity =>
+            modelBuilder.Entity<ApplicationUser>(entity =>
             {
-                entity.HasKey(e => e.IdUsuario);
-
-                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
-
-                entity.Property(e => e.CodRol).HasColumnName("codRol");
-
                 entity.Property(e => e.CodSexo).HasColumnName("codSexo");
-
-                entity.Property(e => e.NomUsuario)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("nomUsuario");
-
-                entity.Property(e => e.RutUsuario).HasColumnName("rutUsuario");
-
-                entity.HasOne(d => d.CodRolNavigation)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.CodRol)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Usuarios_Rol");
 
                 entity.HasOne(d => d.CodSexoNavigation)
                     .WithMany(p => p.Usuarios)
@@ -416,6 +383,7 @@ namespace FCE_KillCoronaVirus.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Usuarios_Sexo");
             });
+            base.OnModelCreating(modelBuilder);
 
             OnModelCreatingPartial(modelBuilder);
         }

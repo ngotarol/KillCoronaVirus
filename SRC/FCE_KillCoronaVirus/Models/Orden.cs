@@ -12,12 +12,12 @@ namespace FCE_KillCoronaVirus.Models
 
         public int NroOrden { get; set; }
         public int NroAtencion { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
         public int IdPac { get; set; }
         public DateTime Fecha { get; set; }
 
         public virtual Paciente IdPacNavigation { get; set; } = null!;
-        public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+        public virtual ApplicationUser IdUsuarioNavigation { get; set; } = null!;
         public virtual Atencion NroAtencionNavigation { get; set; } = null!;
         public virtual ICollection<DetalleOrden> DetalleOrdens { get; set; }
     }

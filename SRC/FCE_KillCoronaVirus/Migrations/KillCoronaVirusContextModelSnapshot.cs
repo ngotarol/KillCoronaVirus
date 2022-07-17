@@ -17,10 +17,90 @@ namespace FCE_KillCoronaVirus.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("FCE_KillCoronaVirus.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ApMaterno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApPaterno")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CodSexo")
+                        .HasColumnType("int")
+                        .HasColumnName("codSexo");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CodSexo");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Atencion", b =>
                 {
@@ -32,6 +112,7 @@ namespace FCE_KillCoronaVirus.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroAtencion"), 1L, 1);
 
                     b.Property<string>("DatAtencion")
+                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("datAtencion");
 
@@ -43,8 +124,8 @@ namespace FCE_KillCoronaVirus.Migrations
                         .HasColumnType("int")
                         .HasColumnName("idPac");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int")
+                    b.Property<string>("IdUsuario")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("idUsuario");
 
                     b.HasKey("NroAtencion");
@@ -112,24 +193,7 @@ namespace FCE_KillCoronaVirus.Migrations
                     b.ToTable("detalleReceta", (string)null);
                 });
 
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.EspecialidadMedico", b =>
-                {
-                    b.Property<int>("CodEsp")
-                        .HasColumnType("int")
-                        .HasColumnName("codEsp");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int")
-                        .HasColumnName("idUsuario");
-
-                    b.HasIndex("CodEsp");
-
-                    b.HasIndex("IdUsuario");
-
-                    b.ToTable("EspecialidadMedico", (string)null);
-                });
-
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Especilidad", b =>
+            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Especialidad", b =>
                 {
                     b.Property<int>("CodEsp")
                         .ValueGeneratedOnAdd()
@@ -146,7 +210,24 @@ namespace FCE_KillCoronaVirus.Migrations
 
                     b.HasKey("CodEsp");
 
-                    b.ToTable("Especilidad", (string)null);
+                    b.ToTable("Especialidad", (string)null);
+                });
+
+            modelBuilder.Entity("FCE_KillCoronaVirus.Models.EspecialidadMedico", b =>
+                {
+                    b.Property<int>("CodEsp")
+                        .HasColumnType("int")
+                        .HasColumnName("codEsp");
+
+                    b.Property<string>("IdUsuario")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("idUsuario");
+
+                    b.HasIndex("CodEsp");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("EspecialidadMedico", (string)null);
                 });
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Examan", b =>
@@ -228,8 +309,8 @@ namespace FCE_KillCoronaVirus.Migrations
                         .HasColumnType("int")
                         .HasColumnName("idPac");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int")
+                    b.Property<string>("IdUsuario")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("idUsuario");
 
                     b.Property<int>("NroAtencion")
@@ -257,9 +338,11 @@ namespace FCE_KillCoronaVirus.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPac"), 1L, 1);
 
                     b.Property<string>("ApMaterno")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ApPaterno")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CodSexo")
@@ -275,6 +358,7 @@ namespace FCE_KillCoronaVirus.Migrations
                         .HasColumnName("fecNacPac");
 
                     b.Property<string>("NomPac")
+                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)")
@@ -328,8 +412,8 @@ namespace FCE_KillCoronaVirus.Migrations
                         .HasColumnType("int")
                         .HasColumnName("idPac");
 
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("int")
+                    b.Property<string>("IdUsuario")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("idUsuario");
 
                     b.Property<int>("NroAtencion")
@@ -345,26 +429,6 @@ namespace FCE_KillCoronaVirus.Migrations
                     b.HasIndex("NroAtencion");
 
                     b.ToTable("Receta");
-                });
-
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Rol", b =>
-                {
-                    b.Property<int>("CodRol")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("codRol");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CodRol"), 1L, 1);
-
-                    b.Property<string>("NomRol")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("nomRol");
-
-                    b.HasKey("CodRol");
-
-                    b.ToTable("Rol", (string)null);
                 });
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Sexo", b =>
@@ -427,40 +491,152 @@ namespace FCE_KillCoronaVirus.Migrations
                     b.ToTable("UnidadDeMedida");
                 });
 
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Usuario", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<int>("IdUsuario")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("idUsuario");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CodRol")
-                        .HasColumnType("int")
-                        .HasColumnName("codRol");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CodSexo")
-                        .HasColumnType("int")
-                        .HasColumnName("codSexo");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomUsuario")
-                        .HasMaxLength(50)
-                        .IsUnicode(false)
-                        .HasColumnType("varchar(50)")
-                        .HasColumnName("nomUsuario");
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("RutUsuario")
-                        .HasColumnType("int")
-                        .HasColumnName("rutUsuario");
+                    b.HasKey("Id");
 
-                    b.HasKey("IdUsuario");
+                    b.HasIndex("RoleId");
 
-                    b.HasIndex("CodRol");
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
 
-                    b.HasIndex("CodSexo");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.ToTable("Usuarios");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("FCE_KillCoronaVirus.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("FCE_KillCoronaVirus.Models.Sexo", "CodSexoNavigation")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("CodSexo")
+                        .IsRequired()
+                        .HasConstraintName("FK_Usuarios_Sexo");
+
+                    b.Navigation("CodSexoNavigation");
                 });
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Atencion", b =>
@@ -471,10 +647,9 @@ namespace FCE_KillCoronaVirus.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Atencion_Paciente");
 
-                    b.HasOne("FCE_KillCoronaVirus.Models.Usuario", "IdUsuarioNavigation")
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", "IdUsuarioNavigation")
                         .WithMany("Atencions")
                         .HasForeignKey("IdUsuario")
-                        .IsRequired()
                         .HasConstraintName("FK_Atencion_Usuarios");
 
                     b.Navigation("IdPacNavigation");
@@ -522,16 +697,15 @@ namespace FCE_KillCoronaVirus.Migrations
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.EspecialidadMedico", b =>
                 {
-                    b.HasOne("FCE_KillCoronaVirus.Models.Especilidad", "CodEspNavigation")
+                    b.HasOne("FCE_KillCoronaVirus.Models.Especialidad", "CodEspNavigation")
                         .WithMany()
                         .HasForeignKey("CodEsp")
                         .IsRequired()
                         .HasConstraintName("FK_EspecialidadMedico_Especilidad");
 
-                    b.HasOne("FCE_KillCoronaVirus.Models.Usuario", "IdUsuarioNavigation")
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", "IdUsuarioNavigation")
                         .WithMany()
                         .HasForeignKey("IdUsuario")
-                        .IsRequired()
                         .HasConstraintName("FK_EspecialidadMedico_Usuarios");
 
                     b.Navigation("CodEspNavigation");
@@ -577,10 +751,9 @@ namespace FCE_KillCoronaVirus.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Orden_Paciente");
 
-                    b.HasOne("FCE_KillCoronaVirus.Models.Usuario", "IdUsuarioNavigation")
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", "IdUsuarioNavigation")
                         .WithMany("Ordens")
                         .HasForeignKey("IdUsuario")
-                        .IsRequired()
                         .HasConstraintName("FK_Orden_Usuarios");
 
                     b.HasOne("FCE_KillCoronaVirus.Models.Atencion", "NroAtencionNavigation")
@@ -615,10 +788,9 @@ namespace FCE_KillCoronaVirus.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Receta_Paciente");
 
-                    b.HasOne("FCE_KillCoronaVirus.Models.Usuario", "IdUsuarioNavigation")
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", "IdUsuarioNavigation")
                         .WithMany("Receta")
                         .HasForeignKey("IdUsuario")
-                        .IsRequired()
                         .HasConstraintName("FK_Receta_Usuarios");
 
                     b.HasOne("FCE_KillCoronaVirus.Models.Atencion", "NroAtencionNavigation")
@@ -634,23 +806,64 @@ namespace FCE_KillCoronaVirus.Migrations
                     b.Navigation("NroAtencionNavigation");
                 });
 
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Usuario", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("FCE_KillCoronaVirus.Models.Rol", "CodRolNavigation")
-                        .WithMany("Usuarios")
-                        .HasForeignKey("CodRol")
-                        .IsRequired()
-                        .HasConstraintName("FK_Usuarios_Rol");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasOne("FCE_KillCoronaVirus.Models.Sexo", "CodSexoNavigation")
-                        .WithMany("Usuarios")
-                        .HasForeignKey("CodSexo")
-                        .IsRequired()
-                        .HasConstraintName("FK_Usuarios_Sexo");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("CodRolNavigation");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("CodSexoNavigation");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("FCE_KillCoronaVirus.Models.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FCE_KillCoronaVirus.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Atencions");
+
+                    b.Navigation("Ordens");
+
+                    b.Navigation("Receta");
                 });
 
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Atencion", b =>
@@ -694,11 +907,6 @@ namespace FCE_KillCoronaVirus.Migrations
                     b.Navigation("DetalleReceta");
                 });
 
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Rol", b =>
-                {
-                    b.Navigation("Usuarios");
-                });
-
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.Sexo", b =>
                 {
                     b.Navigation("Pacientes");
@@ -714,15 +922,6 @@ namespace FCE_KillCoronaVirus.Migrations
             modelBuilder.Entity("FCE_KillCoronaVirus.Models.UnidadDeMedidum", b =>
                 {
                     b.Navigation("Farmacos");
-                });
-
-            modelBuilder.Entity("FCE_KillCoronaVirus.Models.Usuario", b =>
-                {
-                    b.Navigation("Atencions");
-
-                    b.Navigation("Ordens");
-
-                    b.Navigation("Receta");
                 });
 #pragma warning restore 612, 618
         }

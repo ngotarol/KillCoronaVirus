@@ -21,11 +21,11 @@ namespace FCE_KillCoronaVirus.Models
         [Display(Name = "Fecha de atencion")]
         [Required(ErrorMessage = "Para registrar una atencion debe registra la {0}")]
         public int IdPac { get; set; }
-        public int IdUsuario { get; set; }
+        public string IdUsuario { get; set; }
         public DateTime FechaHora { get; set; }
 
         public virtual Paciente IdPacNavigation { get; set; } = null!;
-        public virtual Usuario IdUsuarioNavigation { get; set; } = null!;
+        public virtual ApplicationUser IdUsuarioNavigation { get; set; } = null!;
         public virtual ICollection<Orden> Ordens { get; set; }
         public virtual ICollection<Recetum> Receta { get; set; }
     }
