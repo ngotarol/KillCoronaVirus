@@ -26,10 +26,11 @@ x86/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
-[Bb]in/
+#[Bb]in/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+!/BIN/**
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -250,6 +251,7 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 ServiceFabricBackup/
 *.rptproj.bak
+
 
 # SQL Server files
 *.mdf
