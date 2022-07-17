@@ -14,15 +14,22 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Project Folder
-      run: cd SRC|ls -l
-      
+      run: |
+            cd SRC
+            ls -l      
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: cd SRC|dotnet restore
+      run: |
+            cd SRC
+            dotnet restore
     - name: Build
-      run: cd SRC|dotnet build --no-restore
+      run: |
+            cd SRC
+            dotnet build --no-restore
     - name: Test
-      run: cd SRC|dotnet test --no-build --verbosity normal
+      run: |
+            cd SRC
+            dotnet test --no-build --verbosity normal
