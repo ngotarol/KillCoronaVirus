@@ -8,6 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+
+    <Compile Remove="Areas\Admin\Data\**" />
+    <Compile Remove="Areas\Admin\Models\**" />
+    <Compile Remove="Views\Admin\**" />
+    <Content Remove="Areas\Admin\Data\**" />
+    <Content Remove="Areas\Admin\Models\**" />
+    <Content Remove="Views\Admin\**" />
+    <EmbeddedResource Remove="Areas\Admin\Data\**" />
+    <EmbeddedResource Remove="Areas\Admin\Models\**" />
+    <EmbeddedResource Remove="Views\Admin\**" />
+    <None Remove="Areas\Admin\Data\**" />
+    <None Remove="Areas\Admin\Models\**" />
+    <None Remove="Views\Admin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\attribution.js" />
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\css\all.css" />
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\css\all.min.css" />
