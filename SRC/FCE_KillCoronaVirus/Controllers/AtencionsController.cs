@@ -55,7 +55,7 @@ namespace FCE_KillCoronaVirus.Controllers
             Atencion objAtencion = new Atencion
             {
                 IdPac = objPaciente.IdPac,
-                IdUsuario = 2 //TODO: actualizar este dato
+                IdUsuario = "" //TODO: actualizar este dato
             };
             return View(objAtencion);
         }
@@ -74,7 +74,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 
@@ -92,7 +91,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return NotFound();
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 
@@ -129,7 +127,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 

@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace FCE_KillCoronaVirus.Models
 {
-    public partial class Usuario
+    public class ApplicationUser: IdentityUser
     {
-        public Usuario()
+        public ApplicationUser()
         {
             Atencions = new HashSet<Atencion>();
             Ordens = new HashSet<Orden>();
             Receta = new HashSet<Recetum>();
         }
+        public string ApMaterno { get; set; }  
+        public string ApPaterno { get; set; }   
+        public string Nombre    { get; set; }   
 
-        public int IdUsuario { get; set; }
-        public int RutUsuario { get; set; }
-        public string NomUsuario { get; set; } = null!;
-        public int CodRol { get; set; }
         public int CodSexo { get; set; }
-
-        public virtual Rol CodRolNavigation { get; set; } = null!;
         public virtual Sexo CodSexoNavigation { get; set; } = null!;
         public virtual ICollection<Atencion> Atencions { get; set; }
         public virtual ICollection<Orden> Ordens { get; set; }
