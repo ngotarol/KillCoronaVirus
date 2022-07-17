@@ -12,6 +12,7 @@ namespace FCE_KillCoronaVirus.Models
 
         public int CodUom { get; set; }
         public string NomUom { get; set; } = null!;
+        public string Uom { get; set; } = null!;
 
         public virtual ICollection<Farmaco> Farmacos { get; set; }
     }
