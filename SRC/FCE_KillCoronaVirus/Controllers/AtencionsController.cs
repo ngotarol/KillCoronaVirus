@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FCE_KillCoronaVirus.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FCE_KillCoronaVirus.Controllers
 {
+    [Authorize]
     public class AtencionsController : Controller
     {
         private readonly KillCoronaVirusContext _context;
@@ -18,7 +20,7 @@ namespace FCE_KillCoronaVirus.Controllers
             _context = context;
         }
 
-        // GET: Atencions
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var killCoronaVirusContext = _context.Atencions.Include(a => a.IdPacNavigation).Include(a => a.IdUsuarioNavigation);
@@ -55,7 +57,7 @@ namespace FCE_KillCoronaVirus.Controllers
             Atencion objAtencion = new Atencion
             {
                 IdPac = objPaciente.IdPac,
-                IdUsuario = 2 //TODO: actualizar este dato
+                IdUsuario = "" //TODO: actualizar este dato
             };
             return View(objAtencion);
         }
@@ -74,7 +76,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 
@@ -92,7 +93,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return NotFound();
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 
@@ -129,7 +129,6 @@ namespace FCE_KillCoronaVirus.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdPac"] = new SelectList(_context.Pacientes, "IdPac", "IdPac", atencion.IdPac);
-            ViewData["IdUsuario"] = new SelectList(_context.Usuarios, "IdUsuario", "IdUsuario", atencion.IdUsuario);
             return View(atencion);
         }
 

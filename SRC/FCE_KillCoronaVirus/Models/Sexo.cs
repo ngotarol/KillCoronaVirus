@@ -8,13 +8,13 @@ namespace FCE_KillCoronaVirus.Models
         public Sexo()
         {
             Pacientes = new HashSet<Paciente>();
-            Usuarios = new HashSet<Usuario>();
+            Usuarios = new HashSet<ApplicationUser>();
         }
 
         public int CodSexo { get; set; }
         public string NomSexo { get; set; } = null!;
 
         public virtual ICollection<Paciente> Pacientes { get; set; }
-        public virtual ICollection<Usuario> Usuarios { get; set; }
+        public virtual ICollection<ApplicationUser> Usuarios { get; set; }
     }
 }

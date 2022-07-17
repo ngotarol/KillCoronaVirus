@@ -8,17 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Admin\Data\**" />
-    <Compile Remove="Areas\Admin\Models\**" />
-    <Content Remove="Areas\Admin\Data\**" />
-    <Content Remove="Areas\Admin\Models\**" />
-    <EmbeddedResource Remove="Areas\Admin\Data\**" />
-    <EmbeddedResource Remove="Areas\Admin\Models\**" />
-    <None Remove="Areas\Admin\Data\**" />
-    <None Remove="Areas\Admin\Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\attribution.js" />
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\css\all.css" />
     <Compile Remove="C:\Users\Consultor\.nuget\packages\font.awesome.aspdotnetcore\5.15.4\contentFiles\any\any\wwwroot\lib\fontawesome\css\all.min.css" />
@@ -1735,11 +1724,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
   </ItemGroup>
 
 </Project>

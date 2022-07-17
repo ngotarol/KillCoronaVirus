@@ -42,7 +42,7 @@
                 @Html.Raw(item.IdPacNavigation.NomPac +" "+ item.IdPacNavigation.ApPaterno+" "+item.IdPacNavigation.ApMaterno)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.NomUsuario)
+                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Nombre)
 
             <td>
                 <a asp-action="Edit" asp-route-id="@item.NroAtencion"><i class="fas fa-edit"></i></a> |
