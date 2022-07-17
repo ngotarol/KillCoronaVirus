@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FCE_KillCoronaVirus.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FCE_KillCoronaVirus.Controllers
 {
+    [Authorize]
     public class AtencionsController : Controller
     {
         private readonly KillCoronaVirusContext _context;
@@ -18,7 +20,7 @@ namespace FCE_KillCoronaVirus.Controllers
             _context = context;
         }
 
-        // GET: Atencions
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var killCoronaVirusContext = _context.Atencions.Include(a => a.IdPacNavigation).Include(a => a.IdUsuarioNavigation);
