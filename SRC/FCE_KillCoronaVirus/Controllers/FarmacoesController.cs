@@ -19,17 +19,17 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         // GET: Farmacoes
-        public async Task<IActionResult> Index(string nomFar,string concent, string Uom, string nomPres)
+        public async Task<IActionResult> Index(string NomFar,int Concentracion, string Uom, string NomPresentacion)
         {
-            if (nomFar != null || concent != null || Uom != null || nomPres != null)
+            if (NomFar != null || Concentracion != 0 || Uom != null || NomPresentacion != null)
             {
                 var pharm = await _context.Farmacos
                     .Include(f => f.CodPresentacionNavigation).Include(f => f.CodUomNavigation)
                     .Where(a =>
-                        a.NomFar.Contains(nomFar)||
-                        a.Concentracion.CompareTo(concent)==0 ||
+                        a.NomFar.Contains(NomFar) ||
+                        a.Concentracion == Concentracion ||
                         a.CodUomNavigation.Uom.Contains(Uom)||
-                        a.CodPresentacionNavigation.NomPresentacion.Contains(nomPres)
+                        a.CodPresentacionNavigation.NomPresentacion.Contains(NomPresentacion)
                         )
                     .ToListAsync();
 
@@ -41,7 +41,9 @@ namespace FCE_KillCoronaVirus.Controllers
             }
             else
             {
-                var killCoronaVirusContext = _context.Farmacos.Include(f => f.CodPresentacionNavigation).Include(f => f.CodUomNavigation);
+                var killCoronaVirusContext = _context.Farmacos
+                    .Include(f => f.CodPresentacionNavigation)
+                    .Include(f => f.CodUomNavigation);
                 return View(await killCoronaVirusContext.ToListAsync()); }
         }
 
