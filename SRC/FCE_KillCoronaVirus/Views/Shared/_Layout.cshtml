@@ -10,31 +10,57 @@
     <link rel="stylesheet" href="~/FCE_KillCoronaVirus.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <nav>
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white " href="#">KillCoronaVirus</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <partial name="_LoginPartial" />
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </nav>
     <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">Mantenedor de Tablas</span>
-                    </a>
-                    <div>
-                        <partial name="_menuAdmin" />
-                    </div>
-                    <div class="dropdown pb-4">
-                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
-                            <span class="d-none d-sm-inline mx-1">loser</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Sign out</a></li>
-                        </ul>
-                    </div>
+
+                    @{
+                        if (User.IsInRole("Admin"))
+                        {
+                            <partial name="_menuAdmin" />
+                        }
+                        else if (User.IsInRole("Medico"))
+                        {
+                            <partial name="_menuMedico" />
+                        }
+                        else
+                        {
+                            <a asp-area="Identity" asp-page="/Account/Login" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                                <span class="fs-5 d-none d-sm-inline" >Iniciar sesion</span>
+                            </a>
+                        }
+                    }
+
+
+
                 </div>
             </div>
             <div class="col py-3">
@@ -42,13 +68,7 @@
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
-                <p class="lead">
-                    An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single
-                    menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.
-                </p>
-                <ul class="list-unstyled">
-                    <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>
-                </ul>
+              
             </div>
         </div>
     </div>

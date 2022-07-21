@@ -12,9 +12,11 @@ builder.Services.AddDbContext<KillCoronaVirusContext>(options =>
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
-    options.SignIn.RequireConfirmedAccount = true;
+    options.SignIn.RequireConfirmedAccount = false;
 }
-).AddEntityFrameworkStores<KillCoronaVirusContext>(); 
+).AddRoles<IdentityRole>()
+.AddEntityFrameworkStores<KillCoronaVirusContext>();
+ 
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
