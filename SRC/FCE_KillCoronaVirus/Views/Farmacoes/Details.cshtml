@@ -1,0 +1,42 @@
+﻿@model FCE_KillCoronaVirus.Models.Farmaco
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<div>
+    <h4>Farmaco</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomFar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomFar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Concentracion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Concentracion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodPresentacionNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodPresentacionNavigation.CodPresentacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodUomNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodUomNavigation.CodUom)
+        </dd>
+    </dl>
+</div>
+<div>
+    <button asp-action="Edit" asp-route-id="@Model?.CodFar" class="btn btn-primary m-4 p-1">Editar</button> |
+    <a asp-action="Index">Volver al listado</a>
+</div>

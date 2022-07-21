@@ -1,0 +1,30 @@
+﻿@model FCE_KillCoronaVirus.Models.UnidadDeMedidum
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>UnidadDeMedidum</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomUom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomUom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Uom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Uom)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.CodUom">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

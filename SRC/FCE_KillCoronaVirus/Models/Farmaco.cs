@@ -14,7 +14,7 @@ namespace FCE_KillCoronaVirus.Models
         [Display(Name = "Codigo")]
         [Required(ErrorMessage = "Debe indicar un {0}")]
         public int CodFar { get; set; }
-        [Display(Name = "Nombre")]
+        [Display(Name = "Descripcion farmaco")]
         [Required(ErrorMessage = "Debe indicar un {0}")]
         public string NomFar { get; set; } = null!;
         [Display(Name = "Concentracion")]

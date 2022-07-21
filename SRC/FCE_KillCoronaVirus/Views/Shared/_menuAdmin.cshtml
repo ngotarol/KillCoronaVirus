@@ -1,4 +1,5 @@
-﻿<a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+﻿
+<a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <span class="fs-5 d-none d-sm-inline">Mantenedor de Tablas</span>
 </a>
 <div>
@@ -6,49 +7,50 @@
     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li>
             <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Medicos</span>
+               <span class="btn btn-primary text-white px-2 ms-1 d-none d-sm-inline">Medicos</span>
             </a>
             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Medicos </a>
+                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Medicos </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Especialidades </a>
+                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Especialidades </a>
                 </li>
             </ul>
         </li>
         <li>
             <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Farmacos</span>
+                 <span class="btn btn-primary text-white px-2 ms-1 d-none d-sm-inline">Farmacos</span>
             </a>
             <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a href="../AdmFarmacos/" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Farmacos</a>
+                    <a  asp-controller="Farmacoes" asp-action="Index" class="btn btn-info text-white px-2 m-1">
+                        Administrar Farmacos</a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Presentaciones</a>
+                    <a  asp-controller="Farmacoes" asp-action="Index" class=" btn btn-info text-white px-2 m-1"> Administrar Presentaciones</a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Unidades de medida</a>
+                    <a  asp-controller="UnidaddeMedidums" asp-action="Index" class="btn btn-info text-white px-2 m-1"> Administrar Unidades de medida</a>
                 </li>
             </ul>
         </li>
         <li>
             <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Examen</span>
+                <span class="btn btn-primary text-white px-2 ms-1 d-none d-sm-inline">Examen</span>
             </a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Examenes</a>
+                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Examenes</a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Administrar</span> Tipos de examen</a>
+                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Tipos de examen</a>
                 </li>
             </ul>
         </li>
         <li>
             <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Sexo</span>
+               <span class="btn btn-primary text-white px-2 ms-1 d-none d-sm-inline">Sexo</span>
             </a>
         </li>
     </ul>

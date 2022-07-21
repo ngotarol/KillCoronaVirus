@@ -1,0 +1,45 @@
+﻿@model FCE_KillCoronaVirus.Models.Farmaco
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar farmaco</h1>
+
+<h4>Está seguro que desea borrar este Farmaco?</h4>
+<div>
+    <h3>Seleccione Farmaco</h3>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomFar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomFar)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Concentracion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Concentracion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodPresentacionNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodPresentacionNavigation.CodPresentacion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CodUomNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CodUomNavigation.CodUom)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CodFar" />
+        <input type="submit" value="Borrar" class="btn btn-danger m-4 p-1" /> |
+        <a asp-action="Index">Volver al listado</a>
+    </form>
+</div>

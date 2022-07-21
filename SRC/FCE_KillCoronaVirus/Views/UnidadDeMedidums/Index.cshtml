@@ -1,0 +1,53 @@
+﻿@model IEnumerable<FCE_KillCoronaVirus.Models.UnidadDeMedidum>
+
+@{
+    ViewData["Title"] = "Unidades de medida";
+}
+<h1>Mantenedor de unidades de medida</h1>
+<hr />
+<div class="row">
+    <h3>B&uacute;squeda de unidades de medida</h3>
+    <div class="col-8">
+        <partial name="_busquedaUnidad" />
+    </div>
+    <div class="col-4">
+        <form>
+            <button type="submit" asp-action="Create" class="btn btn-primary text-white m-4">
+                Crear nueva unidad de medida
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomUom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Uom)
+            </th>
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomUom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uom)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodUom"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.CodUom"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodUom"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

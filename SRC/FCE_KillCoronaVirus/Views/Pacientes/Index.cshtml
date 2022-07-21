@@ -4,14 +4,23 @@
     ViewData["Title"] = "buscarPaciente";
 }
 
-<h1>B&uacute;squeda de Pacientes</h1>
+<h1>Pacientes</h1>
+<hr />
+<div class="row">
+    <h3>B&uacute;squeda de pacientes</h3>
+    <div class="col-8">
+        <partial name="_formbusquedapcte" />
+    </div>
+    <div class="col-4">
+        <form>
+            <button type="submit" asp-action="Create" class="btn btn-primary text-white m-4">
+                Crear nuevo paciente
+            </button>
+        </form>
 
-   <partial name="_formbusquedapcte" />
+    </div>
+</div>
 
-<p>
-    <hr />
-    <a asp-action="Create">Crear Nuevo Paciente</a>
-</p>
 <table class="table">
     <thead>
         <tr>
