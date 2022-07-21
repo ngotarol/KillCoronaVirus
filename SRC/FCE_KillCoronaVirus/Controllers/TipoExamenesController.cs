@@ -19,13 +19,13 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         // GET: TipoExamenes
-        public async Task<IActionResult> Index(string tipoExamen)
+        public async Task<IActionResult> Index(string nomTipo)
         {
-            if (tipoExamen != null)
+            if (nomTipo != null)
             {
                 var tipo = await _context.TipoExamen
                     .Where(a =>
-                        a.NomTipo.Contains(tipoExamen)
+                        a.NomTipo.Contains(nomTipo)
                         )
                     .ToListAsync();
 
