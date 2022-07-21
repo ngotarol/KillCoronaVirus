@@ -21,10 +21,29 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int RutPac)
         {
-            var killCoronaVirusContext = _context.Atencions.Include(a => a.IdPacNavigation).Include(a => a.IdUsuarioNavigation);
-            return View(await killCoronaVirusContext.ToListAsync());
+            if (RutPac > 0)
+            {
+                var atencion = await _context.Atencions
+                    .Include(a => a.IdPacNavigation)
+                    .Where(a=>
+                        a.IdPacNavigation.RutPac.CompareTo(RutPac)==0
+                        )
+                    .ToListAsync();
+
+                if(atencion == null)
+                {
+                    return NotFound();
+                }
+                return View(atencion);
+            }
+            else
+            {
+                var killCoronaVirusContext = _context.Atencions.Include(a => a.IdPacNavigation).Include(a => a.IdUsuarioNavigation);
+                return View(await killCoronaVirusContext.ToListAsync());
+            }
+
         }
 
         // GET: Atencions/Details/5

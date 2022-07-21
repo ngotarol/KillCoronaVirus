@@ -1,0 +1,27 @@
+﻿@model FCE_KillCoronaVirus.Models.PresentacionFarmaco
+
+@{
+    ViewData["Title"] = "Eliminar";
+}
+
+<h1>Eliminar</h1>
+
+<h3>Esta seguro que desea eliminar esta presentacion?</h3>
+<div>
+    <h4>Presentacion Farmaco</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NomPresentacion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NomPresentacion)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CodPresentacion" />
+        <input type="submit" value="Borrar" class="btn btn-danger text-white m-4 p-1" /> |
+        <a asp-action="Index">Volver al listado</a>
+    </form>
+</div>

@@ -48,8 +48,8 @@ namespace FCE_KillCoronaVirus.Controllers
         // GET: Farmacoes/Create
         public IActionResult Create()
         {
-            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "CodPresentacion");
-            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "CodUom");
+            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "NomPresentacion");
+            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "NomUom");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace FCE_KillCoronaVirus.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "CodPresentacion", farmaco.CodPresentacion);
-            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "CodUom", farmaco.CodUom);
+            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "NomPresentacion", farmaco.CodPresentacion);
+            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "NomUom", farmaco.CodUom);
             return View(farmaco);
         }
 
@@ -84,8 +84,8 @@ namespace FCE_KillCoronaVirus.Controllers
             {
                 return NotFound();
             }
-            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "CodPresentacion", farmaco.CodPresentacion);
-            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "CodUom", farmaco.CodUom);
+            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "NomPresentacion", farmaco.CodPresentacion);
+            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "NomUom", farmaco.CodUom);
             return View(farmaco);
         }
 
@@ -121,8 +121,8 @@ namespace FCE_KillCoronaVirus.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "CodPresentacion", farmaco.CodPresentacion);
-            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "CodUom", farmaco.CodUom);
+            ViewData["CodPresentacion"] = new SelectList(_context.PresentacionFarmacos, "CodPresentacion", "NomPresentacion", farmaco.CodPresentacion);
+            ViewData["CodUom"] = new SelectList(_context.UnidadDeMedida, "CodUom", "NomUom", farmaco.CodUom);
             return View(farmaco);
         }
 
