@@ -1,14 +1,25 @@
 ﻿@model IEnumerable<FCE_KillCoronaVirus.Models.Especialidad>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Especialidad";
 }
+<h1>Mantenedor de Especialidades</h1>
+<hr />
+<div class="row">
+    <h3>B&uacute;squeda de Especialidad</h3>
+    <div class="col-8">
+        <partial name="_busquedaEspec" />
+    </div>
+    <div class="col-4">
+        <form>
+            <button type="submit" asp-action="Create" class="btn btn-primary text-white m-4">
+                Crear nueva Especialidad
+            </button>
+        </form>
 
-<h1>Index</h1>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -19,17 +30,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomEsp)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CodEsp">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CodEsp">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CodEsp">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomEsp)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodEsp"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.CodEsp"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodEsp"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -35,7 +35,8 @@ namespace FCE_KillCoronaVirus.Controllers
             }
             else
             {
-                return View(await _context.PresentacionFarmacos.ToListAsync());
+                var killCoronaVirusContext = _context.PresentacionFarmacos;
+                return View(await killCoronaVirusContext.ToListAsync());
             }
         }
 

@@ -47,7 +47,8 @@
 
             </th>
             <th>Atencion</th>
-            <th></th>
+            <th>Historial</th>
+            <th>Acciones</th>
 
         </tr>
     </thead>
@@ -78,6 +79,9 @@
                 </td>
                 <td>
                     <a asp-action="Create" asp-controller="Atencions" asp-route-id="@item.IdPac">Crear Atencion</a>
+                </td>
+                <td>
+                    <a asp-action="Index" asp-controller="Atencions" asp-route-RutPac="@item.RutPac">Ver Atenciones</a>
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.IdPac"><i class="fas fa-edit"></i></a> |

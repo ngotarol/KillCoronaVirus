@@ -7,7 +7,7 @@
 <h1>Atenciones de Pacientes</h1>
 <hr />
 <div class="row">
-    <h3>B&uacute;squeda de Farmacos</h3>
+    <h3>B&uacute;squeda de Pacientes</h3>
     <div class="col">
         <partial name="_busquedaAtencion" />
     </div>
@@ -17,45 +17,46 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.IdPacNavigation.RutPac)
+            </th>
+            <th>Paciente</th>
+            <th>
                 @Html.DisplayNameFor(model => model.DatAtencion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaHora)
             </th>
+
             <th>
-                @Html.DisplayNameFor(model => model.IdPacNavigation)
+                Medico tratante
             </th>
-            <th>Nombre</th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
-            </th>
-            <th></th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DatAtencion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaHora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPacNavigation.RutPac)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
                 <td>
-                @Html.Raw(item.IdPacNavigation.NomPac +" "+ item.IdPacNavigation.ApPaterno+" "+item.IdPacNavigation.ApMaterno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.Nombre)
-
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.NroAtencion"><i class="fas fa-edit"></i></a> |
-                <a asp-action="Details" asp-route-id="@item.NroAtencion"><i class="fas fa-info-circle"></i></a> |
-                <a asp-action="Delete" asp-route-id="@item.NroAtencion"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
-}
+                    @Html.DisplayFor(modelItem => item.IdPacNavigation.RutPac)
+                </td>
+                <td>
+                    @Html.Raw(item.IdPacNavigation.NomPac +" "+ item.IdPacNavigation.ApPaterno+" "+item.IdPacNavigation.ApMaterno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatAtencion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaHora)
+                </td>
+                <td>
+                     @Html.Raw(item.IdUsuarioNavigation.Nombre +" "+ item.IdUsuarioNavigation.ApPaterno+" "+item.IdUsuarioNavigation.ApMaterno)
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.NroAtencion"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.NroAtencion"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.NroAtencion"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

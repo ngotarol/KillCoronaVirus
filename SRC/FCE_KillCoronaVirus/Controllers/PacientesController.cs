@@ -78,7 +78,7 @@ namespace FCE_KillCoronaVirus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPac,RutPac,NomPac,apPaterno,apMaterno,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
+        public async Task<IActionResult> Create([Bind("IdPac,RutPac,NomPac,ApPaterno,ApMaterno,FecNacPac,EdadPac,CodSexo")] Paciente paciente)
         {
             if (ModelState.IsValid)
             {

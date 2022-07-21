@@ -1,4 +1,4 @@
-﻿@model FCE_KillCoronaVirus.Models.Especialidad
+﻿@model FCE_KillCoronaVirus.Models.TipoExaman
 
 @{
     ViewData["Title"] = "Editar";
@@ -6,20 +6,20 @@
 
 <h1>Editar</h1>
 
-<h4>Especialidad</h4>
+<h4>Tipo de Examen</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CodEsp" />
+            <input type="hidden" asp-for="CodTipo" />
             <div class="form-group">
-                <label asp-for="NomEsp" class="control-label"></label>
-                <input asp-for="NomEsp" class="form-control" />
-                <span asp-validation-for="NomEsp" class="text-danger"></span>
+                <label asp-for="NomTipo" class="control-label"></label>
+                <input asp-for="NomTipo" class="form-control" />
+                <span asp-validation-for="NomTipo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary text-white m-4 p-1" />
+                 <input type="submit" value="Guardar" class="btn btn-primary text-white m-4 p-1" />
             </div>
         </form>
     </div>

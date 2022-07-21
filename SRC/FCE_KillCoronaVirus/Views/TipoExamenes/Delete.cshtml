@@ -1,4 +1,4 @@
-﻿@model FCE_KillCoronaVirus.Models.Especialidad
+﻿@model FCE_KillCoronaVirus.Models.TipoExaman
 
 @{
     ViewData["Title"] = "Eliminar";
@@ -6,21 +6,21 @@
 
 <h1>Eliminar</h1>
 
-<h3>Esta seguro que desea eliminar esta especialidad?</h3>
+<h3>Esta seguro que desea eliminar este Tipo de Examen?</h3>
 <div>
-    <h4>Especialidad</h4>
+<h4>Tipo de Examen</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NomEsp)
+            @Html.DisplayNameFor(model => model.NomTipo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NomEsp)
+            @Html.DisplayFor(model => model.NomTipo)
         </dd>
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="CodEsp" />
+        <input type="hidden" asp-for="CodTipo" />
         <input type="submit" value="Borrar" class="btn btn-danger text-white m-4 p-1" /> |
         <a asp-action="Index">Volver al listado</a>
     </form>

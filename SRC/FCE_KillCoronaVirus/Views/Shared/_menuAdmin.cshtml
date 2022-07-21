@@ -11,10 +11,10 @@
             </a>
             <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Medicos </a>
+                    <a  asp-controller="Medicos" asp-action="Index" class=" btn btn-info text-white px-2 m-1"> Administrar Medicos </a>
                 </li>
                 <li>
-                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Especialidades </a>
+                    <a  asp-controller="Especialidades" asp-action="Index" class=" btn btn-info text-white px-2 m-1"> Administrar Especialidades </a>
                 </li>
             </ul>
         </li>
@@ -28,7 +28,7 @@
                         Administrar Farmacos</a>
                 </li>
                 <li>
-                    <a  asp-controller="PresentacionFarmacosController" asp-action="Index" class=" btn btn-info text-white px-2 m-1"> Administrar Presentaciones</a>
+                    <a  asp-controller="PresentacionFarmacos" asp-action="Index" class=" btn btn-info text-white px-2 m-1"> Administrar Presentaciones</a>
                 </li>
                 <li>
                     <a  asp-controller="UnidaddeMedidums" asp-action="Index" class="btn btn-info text-white px-2 m-1"> Administrar Unidades de medida</a>
@@ -44,7 +44,7 @@
                     <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Examenes</a>
                 </li>
                 <li>
-                    <a href="#" class=" btn btn-info text-white px-2 m-1"> <span class="d-none d-sm-inline">Administrar</span> Tipos de examen</a>
+                    <a  asp-controller="TipoExamenes" asp-action="Index" class="btn btn-info text-white px-2 m-1">Administrar Tipos de examen</a>
                 </li>
             </ul>
         </li>

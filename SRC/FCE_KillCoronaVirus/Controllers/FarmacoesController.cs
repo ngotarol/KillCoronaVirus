@@ -19,10 +19,30 @@ namespace FCE_KillCoronaVirus.Controllers
         }
 
         // GET: Farmacoes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string nomFar,string concent, string Uom, string nomPres)
         {
-            var killCoronaVirusContext = _context.Farmacos.Include(f => f.CodPresentacionNavigation).Include(f => f.CodUomNavigation);
-            return View(await killCoronaVirusContext.ToListAsync());
+            if (nomFar != null || concent != null || Uom != null || nomPres != null)
+            {
+                var pharm = await _context.Farmacos
+                    .Include(f => f.CodPresentacionNavigation).Include(f => f.CodUomNavigation)
+                    .Where(a =>
+                        a.NomFar.Contains(nomFar)||
+                        a.Concentracion.CompareTo(concent)==0 ||
+                        a.CodUomNavigation.Uom.Contains(Uom)||
+                        a.CodPresentacionNavigation.NomPresentacion.Contains(nomPres)
+                        )
+                    .ToListAsync();
+
+                if (pharm == null)
+                {
+                    return NotFound();
+                }
+                return View(pharm);
+            }
+            else
+            {
+                var killCoronaVirusContext = _context.Farmacos.Include(f => f.CodPresentacionNavigation).Include(f => f.CodUomNavigation);
+                return View(await killCoronaVirusContext.ToListAsync()); }
         }
 
         // GET: Farmacoes/Details/5

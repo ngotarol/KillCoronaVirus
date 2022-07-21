@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FCE_KillCoronaVirus.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace FCE_KillCoronaVirus.Controllers
 {
@@ -14,10 +15,12 @@ namespace FCE_KillCoronaVirus.Controllers
     public class AtencionsController : Controller
     {
         private readonly KillCoronaVirusContext _context;
+        private readonly UserManager<Models.ApplicationUser> _userManager;
 
-        public AtencionsController(KillCoronaVirusContext context)
+        public AtencionsController(KillCoronaVirusContext context, UserManager<Models.ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         [Authorize]
@@ -27,6 +30,7 @@ namespace FCE_KillCoronaVirus.Controllers
             {
                 var atencion = await _context.Atencions
                     .Include(a => a.IdPacNavigation)
+                    .Include(a => a.IdUsuarioNavigation)
                     .Where(a=>
                         a.IdPacNavigation.RutPac.CompareTo(RutPac)==0
                         )
@@ -75,8 +79,7 @@ namespace FCE_KillCoronaVirus.Controllers
 
             Atencion objAtencion = new Atencion
             {
-                IdPac = objPaciente.IdPac,
-                IdUsuario = "" //TODO: actualizar este dato
+                IdPac = objPaciente.IdPac
             };
             return View(objAtencion);
         }
@@ -86,8 +89,11 @@ namespace FCE_KillCoronaVirus.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NroAtencion,DatAtencion,IdPac,IdUsuario,FechaHora")] Atencion atencion)
+        public async Task<IActionResult> Create([Bind("NroAtencion,DatAtencion,IdPac,FechaHora")] Atencion atencion)
         {
+            var objUser = await  _userManager.GetUserAsync(User);
+
+            atencion.IdUsuario = objUser.Id;
             if (ModelState.IsValid)
             {
                 _context.Add(atencion);

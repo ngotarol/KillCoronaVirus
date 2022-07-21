@@ -9,103 +9,103 @@ using FCE_KillCoronaVirus.Models;
 
 namespace FCE_KillCoronaVirus.Controllers
 {
-    public class EspecialidadesController : Controller
+    public class TipoExamenesController : Controller
     {
         private readonly KillCoronaVirusContext _context;
 
-        public EspecialidadesController(KillCoronaVirusContext context)
+        public TipoExamenesController(KillCoronaVirusContext context)
         {
             _context = context;
         }
 
-        // GET: Especialidades
-        public async Task<IActionResult> Index(string Espec)
-
+        // GET: TipoExamenes
+        public async Task<IActionResult> Index(string tipoExamen)
         {
-            if (Espec != null)
+            if (tipoExamen != null)
             {
-                var especialidad = await _context.Especilidads
+                var tipo = await _context.TipoExamen
                     .Where(a =>
-                        a.NomEsp.Contains(Espec)
+                        a.NomTipo.Contains(tipoExamen)
                         )
                     .ToListAsync();
 
-                if (especialidad == null)
+                if (tipo == null)
                 {
                     return NotFound();
                 }
-                return View(especialidad);
+                return View(tipo);
             }
             else
             {
-                return View(await _context.Especilidads.ToListAsync());
+                var killCoronaVirusContext = _context.TipoExamen;
+                return View(await killCoronaVirusContext.ToListAsync());
             }
         }
 
-        // GET: Especialidades/Details/5
+        // GET: TipoExamenes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Especilidads == null)
+            if (id == null || _context.TipoExamen == null)
             {
                 return NotFound();
             }
 
-            var especialidad = await _context.Especilidads
-                .FirstOrDefaultAsync(m => m.CodEsp == id);
-            if (especialidad == null)
+            var tipoExaman = await _context.TipoExamen
+                .FirstOrDefaultAsync(m => m.CodTipo == id);
+            if (tipoExaman == null)
             {
                 return NotFound();
             }
 
-            return View(especialidad);
+            return View(tipoExaman);
         }
 
-        // GET: Especialidades/Create
+        // GET: TipoExamenes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Especialidades/Create
+        // POST: TipoExamenes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CodEsp,NomEsp")] Especialidad especialidad)
+        public async Task<IActionResult> Create([Bind("CodTipo,NomTipo")] TipoExaman tipoExaman)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(especialidad);
+                _context.Add(tipoExaman);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(especialidad);
+            return View(tipoExaman);
         }
 
-        // GET: Especialidades/Edit/5
+        // GET: TipoExamenes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Especilidads == null)
+            if (id == null || _context.TipoExamen == null)
             {
                 return NotFound();
             }
 
-            var especialidad = await _context.Especilidads.FindAsync(id);
-            if (especialidad == null)
+            var tipoExaman = await _context.TipoExamen.FindAsync(id);
+            if (tipoExaman == null)
             {
                 return NotFound();
             }
-            return View(especialidad);
+            return View(tipoExaman);
         }
 
-        // POST: Especialidades/Edit/5
+        // POST: TipoExamenes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CodEsp,NomEsp")] Especialidad especialidad)
+        public async Task<IActionResult> Edit(int id, [Bind("CodTipo,NomTipo")] TipoExaman tipoExaman)
         {
-            if (id != especialidad.CodEsp)
+            if (id != tipoExaman.CodTipo)
             {
                 return NotFound();
             }
@@ -114,12 +114,12 @@ namespace FCE_KillCoronaVirus.Controllers
             {
                 try
                 {
-                    _context.Update(especialidad);
+                    _context.Update(tipoExaman);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EspecialidadExists(especialidad.CodEsp))
+                    if (!TipoExamanExists(tipoExaman.CodTipo))
                     {
                         return NotFound();
                     }
@@ -130,49 +130,49 @@ namespace FCE_KillCoronaVirus.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(especialidad);
+            return View(tipoExaman);
         }
 
-        // GET: Especialidades/Delete/5
+        // GET: TipoExamenes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Especilidads == null)
+            if (id == null || _context.TipoExamen == null)
             {
                 return NotFound();
             }
 
-            var especialidad = await _context.Especilidads
-                .FirstOrDefaultAsync(m => m.CodEsp == id);
-            if (especialidad == null)
+            var tipoExaman = await _context.TipoExamen
+                .FirstOrDefaultAsync(m => m.CodTipo == id);
+            if (tipoExaman == null)
             {
                 return NotFound();
             }
 
-            return View(especialidad);
+            return View(tipoExaman);
         }
 
-        // POST: Especialidades/Delete/5
+        // POST: TipoExamenes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Especilidads == null)
+            if (_context.TipoExamen == null)
             {
-                return Problem("Entity set 'KillCoronaVirusContext.Especilidads'  is null.");
+                return Problem("Entity set 'KillCoronaVirusContext.TipoExamen'  is null.");
             }
-            var especialidad = await _context.Especilidads.FindAsync(id);
-            if (especialidad != null)
+            var tipoExaman = await _context.TipoExamen.FindAsync(id);
+            if (tipoExaman != null)
             {
-                _context.Especilidads.Remove(especialidad);
+                _context.TipoExamen.Remove(tipoExaman);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EspecialidadExists(int id)
+        private bool TipoExamanExists(int id)
         {
-          return _context.Especilidads.Any(e => e.CodEsp == id);
+            return _context.TipoExamen.Any(e => e.CodTipo == id);
         }
     }
 }

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FCE_KillCoronaVirus.Models.TipoExaman>
+
+@{
+    ViewData["Title"] = "Tipos";
+}
+<h1>Mantenedor de Tipos de examen</h1>
+<hr />
+<div class="row">
+    <h3>B&uacute;squeda de Tipos de examen</h3>
+    <div class="col-8">
+        <partial name="_busquedaTipo" />
+    </div>
+    <div class="col-4">
+        <form>
+            <button type="submit" asp-action="Create" class="btn btn-primary text-white m-4">
+                Crear nuevo Tipos de examen
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomTipo)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomTipo)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CodTipo"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.CodTipo"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.CodTipo"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

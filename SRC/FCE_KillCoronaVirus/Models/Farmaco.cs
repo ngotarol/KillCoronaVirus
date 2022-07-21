@@ -12,7 +12,6 @@ namespace FCE_KillCoronaVirus.Models
         }
         
         [Display(Name = "Codigo")]
-        [Required(ErrorMessage = "Debe indicar un {0}")]
         public int CodFar { get; set; }
         [Display(Name = "Descripcion farmaco")]
         [Required(ErrorMessage = "Debe indicar un {0}")]
@@ -28,10 +27,8 @@ namespace FCE_KillCoronaVirus.Models
         public int CodPresentacion { get; set; }
 
         [Display(Name = "Presentacion")]
-        [Required(ErrorMessage = "Debe indicar una {0}")]
         public virtual PresentacionFarmaco CodPresentacionNavigation { get; set; } = null!;
         [Display(Name = "Unidad de medida")]
-        [Required(ErrorMessage = "Debe indicar una {0}")]
         public virtual UnidadDeMedidum CodUomNavigation { get; set; } = null!;
 
         public virtual ICollection<DetalleRecetum> DetalleReceta { get; set; }
